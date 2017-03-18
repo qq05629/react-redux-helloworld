@@ -6,33 +6,34 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increase, decrease, reset } from './actions';
+import { start, stop, reset } from './actions';
 
 class Home extends Component {
   _onPressReset() {
     this.props.dispatch(reset());
   }
 
-  _onPressInc() {
-    this.props.dispatch(increase());
+  _onPressStart() {
+    this.props.dispatch(start());
   }
 
-  _onPressDec() {
-    this.props.dispatch(decrease());
+  _onPressStop() {
+    this.props.dispatch(stop());
   }
 
   render() {
+    const { timer } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.counter}>{this.props.counter.count}</Text>
+        <Text style={[styles.counter, {color:timer.runStatus?'blue':'black'}]}>{timer.seconds}</Text>
         <TouchableOpacity style={styles.reset} onPress={()=>this._onPressReset()}>
-          <Text>归零</Text>
+          <Text>重置</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.start} onPress={()=>this._onPressInc()}>
-          <Text>加1</Text>
+        <TouchableOpacity style={styles.start} onPress={()=>this._onPressStart()}>
+          <Text>开始</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.stop} onPress={()=>this._onPressDec()}>
-          <Text>减1</Text>
+        <TouchableOpacity style={styles.stop} onPress={()=>this._onPressStop()}>
+          <Text>停止</Text>
         </TouchableOpacity>
       </View>
     );
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-	counter: state.counter
+	timer: state.timer
 })
 
 export default connect(mapStateToProps)(Home);
