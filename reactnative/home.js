@@ -7,23 +7,28 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from './actions';
-// import { start, stop, reset } from './actions';
+// import * as actions from './actions';
+import { start, stop, reset } from './actions';
 
+@connect(state => ({ timer: state.timer }))
 class Home extends Component {
   _onPressReset() {
-    // this.props.dispatch(reset());
-    this.props.dispatch.reset();
+    this.props.dispatch(reset());
+    // this.props.dispatch.reset();
+    // this.props.reset();
+    // console.log(this.props);
   }
 
   _onPressStart() {
-    // this.props.dispatch(start());
-    this.props.dispatch.start();
+    this.props.dispatch(start());
+    // this.props.dispatch.start();
+    // this.props.start();
   }
 
   _onPressStop() {
-    // this.props.dispatch(stop());
-    this.props.dispatch.stop();
+    this.props.dispatch(stop());
+    // this.props.dispatch.stop();
+    // this.props.stop();
   }
 
   render() {
@@ -70,13 +75,14 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = state => ({
-	timer: state.timer
-})
+// const mapStateToProps = state => ({
+// 	timer: state.timer
+// })
+//
+// const mapDispatchToProps = dispatch => ({
+//   dispatch: bindActionCreators(actions, dispatch)
+// });
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
-const mapDispatchToProps = dispatch => ({
-  dispatch: bindActionCreators(actions, dispatch)
-});
-
-// export default connect(mapStateToProps)(Home);
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
