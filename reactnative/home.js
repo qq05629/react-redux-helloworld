@@ -6,19 +6,24 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { start, stop, reset } from './actions';
+import { bindActionCreators } from 'redux';
+import * as actions from './actions';
+// import { start, stop, reset } from './actions';
 
 class Home extends Component {
   _onPressReset() {
-    this.props.dispatch(reset());
+    // this.props.dispatch(reset());
+    this.props.dispatch.reset();
   }
 
   _onPressStart() {
-    this.props.dispatch(start());
+    // this.props.dispatch(start());
+    this.props.dispatch.start();
   }
 
   _onPressStop() {
-    this.props.dispatch(stop());
+    // this.props.dispatch(stop());
+    this.props.dispatch.stop();
   }
 
   render() {
@@ -69,4 +74,9 @@ const mapStateToProps = state => ({
 	timer: state.timer
 })
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => ({
+  dispatch: bindActionCreators(actions, dispatch)
+});
+
+// export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
