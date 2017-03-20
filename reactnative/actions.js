@@ -1,9 +1,14 @@
 import { START, STOP, RESET, RUN_TIMER } from './actionsTypes';
+import { createAction } from 'redux-actions';
 
-const startAction = () => ({ type: START });
-const stopAction = () => ({ type: STOP });
-const resetAction = () => ({ type: RESET });
-const runTimeAction = () => ({ type: RUN_TIMER });
+// const startAction = () => ({ type: START });
+// const stopAction = () => ({ type: STOP });
+// const resetAction = () => ({ type: RESET });
+// const runTimeAction = () => ({ type: RUN_TIMER });
+const startAction = createAction(START);
+const stopAction = createAction(STOP);
+const resetAction = createAction(RESET);
+const runTimeAction = createAction(RUN_TIMER);
 
 var t = -1;
 
